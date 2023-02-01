@@ -1,0 +1,8 @@
+- name: My Custom keys
+  pattern: "{my-custom}*"
+  ttlSeconds: 86400
+  batch: 100000
+- name: My Custom another keys
+  pattern: "{my-custom-another}*"
+  ttlSeconds: 129600
+  batch: 100000

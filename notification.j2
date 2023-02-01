@@ -1,0 +1,9 @@
+{% for result in results %}
+
+{{ result.config.name }} {% if result.error_msg %}:x:{% else %}:white_check_mark:{% endif %}
+Execution time: {{ result.execution_time }}{% if result.error_msg %}
+Error: {{ result.error_msg }}{% endif %}
+Match: {{ result.config.pattern }}
+Set expiration (number of keys): {{ result.processed_keys }}
+Batch: {{ result.config.batch }}
+Number of batches: {{ result.iterations }}{% endfor %}
