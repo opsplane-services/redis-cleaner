@@ -1,5 +1,8 @@
 # Redis Key Cleaner
 
+![build workflow](https://github.com/opsplane-services/redis-cleaner/actions/workflows/docker-build.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This application is used to set the expiry of Redis keys based on a given pattern and time-to-live (TTL) value.
 
 ## Requirements
