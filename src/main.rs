@@ -158,6 +158,8 @@ async fn main() {
     let webhook_url = env::var("NOTIFICATION_WEBHOOK_URL").unwrap_or("".to_string());
     let cleanup_title =
         env::var("NOTIFICATION_CLEANUP_TITLE").unwrap_or("Redis Cleanup".to_string());
+    let notification_template_file =
+        env::var("NOTIFICATION_TEMPALTE_FILE").unwrap_or("notification.j2".to_string());
     let config_file = args.config;
     let dry_run = args.dry_run;
     let conf_file = std::fs::File::open(config_file).unwrap();
@@ -197,7 +199,8 @@ async fn main() {
         }
     }
     if !webhook_url.is_empty() {
-        let text_content = render_notification_content("notification.j2", results, "*.j2");
+        let text_content =
+            render_notification_content(notification_template_file.as_str(), results, "*.j2");
         let attachment = Attachment {
             text: text_content,
             title: cleanup_title.clone(),
@@ -222,7 +225,11 @@ async fn main() {
                     info!("Notification has been sent successfully.");
                 } else {
                     let code = status.clone().as_u16();
-                    info!("Notification error: {} - code: {}", result.text().await.unwrap(), code);
+                    info!(
+                        "Notification error: {} - code: {}",
+                        result.text().await.unwrap(),
+                        code
+                    );
                 }
             }
             Err(err) => {
