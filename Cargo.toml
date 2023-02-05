@@ -2,6 +2,8 @@
 name = "redis-cleaner"
 version = "0.1.0"
 edition = "2021"
+description = "This application is used to set the expiry of Redis keys based on a given pattern and time-to-live (TTL) value."
+license = "MIT"
 
 [[bin]]
 name = "redis-cleaner"
